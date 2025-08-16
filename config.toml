@@ -1,0 +1,74 @@
+# -------------------------
+# Global editor settings
+# -------------------------
+theme = "everforest_light"
+
+[editor]
+line-number = "relative"     # Show relative line numbers
+mouse = false                # Disable mouse support
+shell = ["zsh"]              # Default shell
+bufferline = "always"        # Always show buffer line
+#diagnostics = "on"          # Enable LSP diagnostics (disabled here)
+#auto-format = true          # Format code automatically on save
+auto-completion = true       # Enable autocompletion
+#auto-save = true            # Enable auto-save (handled below)
+
+[editor.cursor-shape]
+insert = "bar"               # Cursor is a bar in insert mode
+normal = "block"             # Cursor is a block in normal mode
+select = "underline"         # Cursor is underline in select mode
+
+[editor.file-picker]
+hidden = false               # Do not show hidden files in file picker
+
+# -------------------------
+# Auto-save configuration
+# -------------------------
+[editor.auto-save]
+after-delay.enable = true    # Enable auto-save after delay
+after-delay.timeout = 500    # Delay (ms) before auto-save triggers
+# focus-lost = true            # Auto-save when editor loses focus
+focus-lost = false          # save after timeout even if still focused
+
+
+[keys.normal]
+
+# -------------------------
+# Line operations
+# -------------------------
+# dd: delete current line
+d = { d = ["extend_to_line_bounds", "delete_selection"] }
+
+# Alt+d: duplicate current line (yank + paste after)
+"A-d" = ["extend_to_line_bounds", "yank", "paste_after"]
+
+# Shift+Down: move current line down
+"S-down" = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+
+# Shift+Up: move current line up
+"S-up" = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
+
+# -------------------------
+# Word / selection operations
+# -------------------------
+# Ctrl+n: select current word, then search for it
+"C-n" = ["select_mode", "move_char_right", "move_prev_word_start", "move_next_word_start", "search_selection"]
+
+[keys.normal.","]
+# -------------------------
+# Line duplication & comments
+# -------------------------
+# ,x: duplicate current line(s)
+x = ["save_selection", "extend_to_line_bounds", "yank", "paste_before", "jump_backward"]
+
+# ,X: toggle comments, duplicate commented line(s), then uncomment original
+X = ["save_selection", "extend_to_line_bounds", "toggle_comments", "yank", "paste_before", "jump_backward", "toggle_comments"]
+
+# -------------------------
+# Insert new lines
+# -------------------------
+# ,o: insert new line below and move cursor there
+o = ["add_newline_below", "move_line_down"]
+
+# ,O: insert new line above and move cursor there
+O = ["add_newline_above", "move_line_up"]

@@ -1,0 +1,65 @@
+# -------------------------
+# C configuration
+# -------------------------
+# Install required packages:
+#   sudo apt install clangd clang-format
+[[language]]
+name = "c"
+language-servers = ["clangd"]
+formatter = { command = "clang-format" }
+auto-format = true
+[language.indent]
+tab-width = 4
+indent-width = 4
+unit = "Space"
+
+[language-server.clangd]
+command = "clangd"
+
+# -------------------------
+# Go configuration
+# -------------------------
+# Install required packages:
+#   go install golang.org/x/tools/gopls@latest
+#   (formatter `gofmt` is included with Go)
+[[language]]
+name = "go"
+language-servers = ["gopls"]
+formatter = { command = "gcddofmt" }
+auto-format = true
+[language.indent]
+tab-width = 4
+indent-width = 4
+unit = "Space"
+
+# -------------------------
+# Rust configuration
+# -------------------------
+# Install required packages:
+#   rustup component add rust-analyzer rustfmt
+[[language]]
+name = "rust"
+language-servers = ["rust-analyzer"]
+formatter = { command = "rustfmt" }
+auto-format = true
+indent = { tab-width = 4, unit = "t" }
+
+[language-server.rust-analyzer]
+command = "rust-analyzer"
+
+# -------------------------
+# Python configuration
+# -------------------------
+# Install required packages:
+#   npm install -g pyright
+#   pip install black
+[[language]]
+name = "python"
+language-servers = ["pylsp"]
+formatter = { command = "black", args = ["-"] }
+auto-format = true
+[language.indent]
+tab-width = 4
+indent-width = 4
+unit = "Space"
+
